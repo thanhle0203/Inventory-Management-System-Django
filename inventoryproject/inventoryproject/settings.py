@@ -96,6 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
