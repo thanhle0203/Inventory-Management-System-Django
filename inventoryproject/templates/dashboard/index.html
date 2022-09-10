@@ -2,7 +2,7 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated user.is_staff %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
 {% include 'partials/topnav.html' %}
 <div class="row ">
     <div class="col-md-6 my-4">
@@ -99,6 +99,9 @@
     </div>
 </div>
 
-
+{% else %}
+<div class="container">
+    <h3>Staff Page</h3>
+</div>
 {% endif %}
 {% endblock %}
