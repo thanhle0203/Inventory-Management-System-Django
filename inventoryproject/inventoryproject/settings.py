@@ -125,7 +125,7 @@ LOGIN_REDIRECT_URL = 'dashboard-index'
 
 LOGIN_URL = 'user-login'
 
-MEDIA_ROOT = ('BASE_DIR' / 'media' )
+MEDIA_ROOT = (BASE_DIR / 'media' )
 
 MEDIA_URL = '/media/'
 
