@@ -2,6 +2,7 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated user.is_staff %}
 {% include 'partials/topnav.html' %}
 <div class="row ">
     <div class="col-md-6 my-4">
@@ -99,5 +100,5 @@
 </div>
 
 
-
+{% endif %}
 {% endblock %}
