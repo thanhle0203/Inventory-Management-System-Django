@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Product
@@ -21,6 +21,9 @@ def product(request):
 
     if request.method == 'POST':
         form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard-product')
     else:
         form = ProductForm()
         
@@ -29,6 +32,11 @@ def product(request):
         'form': form,
     }
     return render(request, 'dashboard/product.html', context)
+
+@login_required
+def product_delete(request, pk):
+    item = Product.objects.get(id=pk)
+    return render(request, 'dashboard/product_delete.html')
 
 @login_required
 def order(request):
