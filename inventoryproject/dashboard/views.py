@@ -15,7 +15,13 @@ def staff(request):
 
 @login_required
 def product(request):
-    return render(request, 'dashboard/product.html')
+    items = Product.objects.all()
+
+    context = {
+        'items': items,
+
+    }
+    return render(request, 'dashboard/product.html', context)
 
 @login_required
 def order(request):
