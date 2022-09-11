@@ -10,19 +10,19 @@
             <thead class="bg-info text-white">
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">First</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                {% for customer in customer %}
+                {% for worker in workers %}
                 <tr>
-                    <th scope="row"><a class="btn btn-info btn-sm"
-                            href="#">View</a></th>
-                    <td>{{ customer.username }}</td>
-                    <td>{{ customer.profile.phone }}</td>
-                    <td>{{ customer.email }}</td>
+                    <th scope="row"><a class="btn btn-info btn-sm" href="{% url 'dashboard-staff-detail' worker.id %}">View</a></th>
+                    <td>{{ worker.username }}</td>   
+                    <td>{{ worker.email }}</td>
+                    <td>{{ worker.profile.phone }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
