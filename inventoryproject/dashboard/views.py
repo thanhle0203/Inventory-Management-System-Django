@@ -15,7 +15,8 @@ def staff(request):
 
 @login_required
 def product(request):
-    items = Product.objects.all()
+    #items = Product.objects.all()
+    items = Product.objects.raw('SELECT * FROM dashboard_product')
 
     context = {
         'items': items,
