@@ -1,7 +1,5 @@
-from sre_constants import CATEGORY
+
 from statistics import quantiles
-from tabnanny import verbose
-from unicodedata import category, name
 from django.db import models
 from django.contrib.auth.models import User
 
