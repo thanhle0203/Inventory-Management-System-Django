@@ -37,14 +37,25 @@ def staff(request):
     workers_count = workers.count()
     context = {
         'workers': workers,
-        'workers_count': workers_count
+        'workers_count': workers_count,
     }
     return render(request, 'dashboard/staff.html', context)
+
+@login_required
+def staff_detail(request, pk):
+    workers = User.objects.get(id=pk)
+    context={
+        'workers': workers,
+    }
+    return(request, 'dashboard/staff_detail.html', context)
 
 @login_required
 def product(request):
     items = Product.objects.all()
     #items = Product.objects.raw('SELECT * FROM dashboard_product')
+    workers = User.objects.all()
+    workers_count = workers.count()
+    
 
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -59,6 +70,7 @@ def product(request):
     context = {
         'items': items,
         'form': form,
+        'workers_count': workers_count,
     }
     return render(request, 'dashboard/product.html', context)
 
@@ -88,23 +100,14 @@ def product_update(request, pk):
 @login_required
 def order(request):
     orders = Order.objects.all()
+    orders_count = orders.count()
+    workers = User.objects.all()
+    workers_count = workers.count()
     context={
         'orders': orders,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
     }
     return render(request, 'dashboard/order.html', context)
 
-@login_required
-def staff(request):
-    workers = User.objects.all()
-    context = {
-        'workers': workers,
-    }
-    return render(request, 'dashboard/staff.html', context)
 
-@login_required
-def staff_detail(request, pk):
-    workers = User.objects.get(id=pk)
-    context={
-        'workers': workers,
-    }
-    return(request, 'dashboard/staff_detail.html', context)
