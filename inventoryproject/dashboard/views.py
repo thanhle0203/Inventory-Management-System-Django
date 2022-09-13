@@ -6,6 +6,8 @@ from .models import Product, Order
 from .forms import OrderForm, ProductForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -126,5 +128,15 @@ def order(request):
         'products_count': products_count,
     }
     return render(request, 'dashboard/order.html', context)
+
+def emai(request):
+    subject = 'Thank you for resgistering our site'
+    message = ' it means a world to us'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['receiver@gmail.com', ]
+
+    send_mail(subject, message, email_from, recipient_list)
+
+    return redirect('dashboard-index')
 
 
