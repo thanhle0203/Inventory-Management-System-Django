@@ -13,6 +13,9 @@ from django.contrib import messages
 def index(request):
     orders = Order.objects.all()
     products = Product.objects.all()
+    orders_count = orders.count()
+    products_count = products.count()
+    workers_count = User.objects.all().count()
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -28,6 +31,9 @@ def index(request):
         'orders': orders,
         'form': form,
         'products': products,
+        'orders_count': orders_count,
+        'products_count': products_count,
+        'workers_count': workers_count,
     }
     return render(request, 'dashboard/index.html', context)
 
@@ -43,6 +49,7 @@ def staff(request):
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        
     }
     return render(request, 'dashboard/staff.html', context)
 
@@ -60,7 +67,7 @@ def product(request):
     #items = Product.objects.raw('SELECT * FROM dashboard_product')
     workers = User.objects.all()
     workers_count = workers.count()
-    products_count = Product.objects.all().count()
+    products_count = items.count()
     orders_count = Order.objects.all().count()
 
     if request.method == 'POST':
