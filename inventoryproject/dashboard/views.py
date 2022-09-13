@@ -33,7 +33,13 @@ def index(request):
 
 @login_required
 def staff(request):
-    return render(request, 'dashboard/staff.html')
+    workers = User.objects.all()
+    workers_count = workers.count()
+    context = {
+        'workers': workers,
+        'workers_count': workers_count
+    }
+    return render(request, 'dashboard/staff.html', context)
 
 @login_required
 def product(request):
