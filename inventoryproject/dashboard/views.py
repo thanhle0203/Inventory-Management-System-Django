@@ -55,7 +55,7 @@ def product(request):
     #items = Product.objects.raw('SELECT * FROM dashboard_product')
     workers = User.objects.all()
     workers_count = workers.count()
-    
+    products_count = Product.objects.all().count()
 
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -71,6 +71,7 @@ def product(request):
         'items': items,
         'form': form,
         'workers_count': workers_count,
+        'products_count': products_count,
     }
     return render(request, 'dashboard/product.html', context)
 
