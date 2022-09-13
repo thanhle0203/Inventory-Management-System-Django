@@ -35,9 +35,14 @@ def index(request):
 def staff(request):
     workers = User.objects.all()
     workers_count = workers.count()
+    orders = Order.objects.all()
+    orders_count = orders.count()
+    products_count = Product.objects.all().count() 
     context = {
         'workers': workers,
         'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count,
     }
     return render(request, 'dashboard/staff.html', context)
 
@@ -56,6 +61,7 @@ def product(request):
     workers = User.objects.all()
     workers_count = workers.count()
     products_count = Product.objects.all().count()
+    orders_count = Order.objects.all().count()
 
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -72,6 +78,7 @@ def product(request):
         'form': form,
         'workers_count': workers_count,
         'products_count': products_count,
+        'orders_count': orders_count,
     }
     return render(request, 'dashboard/product.html', context)
 
@@ -104,10 +111,12 @@ def order(request):
     orders_count = orders.count()
     workers = User.objects.all()
     workers_count = workers.count()
+    products_count = Product.objects.count()
     context={
         'orders': orders,
         'workers_count': workers_count,
         'orders_count': orders_count,
+        'products_count': products_count,
     }
     return render(request, 'dashboard/order.html', context)
 
